@@ -949,7 +949,11 @@ $(document).ready(function () {
     return { browser: browserName, version: version };
   }
 
-  const browserInfo = getBrowserVersion();
+  // const browserInfo = getBrowserVersion();
+  const browserInfo = {
+    'version' : '13',
+    'browser' : 'safari'
+  }
   console.log(browserInfo);
 
   window.visualViewport.addEventListener("resize", (event) => {
