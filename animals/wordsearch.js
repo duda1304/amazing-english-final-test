@@ -952,20 +952,25 @@ $(document).ready(function () {
   const browserInfo = getBrowserVersion();
   console.log(browserInfo);
 
-  window.visualViewport.addEventListener("resize", (event) => {
-    if ((browserInfo.browser.toLocaleLowerCase().includes('safari') && parseInt(browserInfo.version) < 16) || (browserInfo.browser.toLocaleLowerCase().includes('chrome') && parseInt(browserInfo.version) < 108)) {
-      return
-    } else {
-      $("div[data-word]").each(function() {
-        const cell = $(this);
-        const markerElement = $(this).find(".marker_element");
-        if (markerElement.hasClass('diagonal')) {
-          const width = Math.sqrt(cell.outerWidth() ** 2 + cell.outerHeight() ** 2)+'px';
-          markerElement.css('width', width);
-        }
-      });
-    }
-  });
+  function windowResizeFunction() {
+    window.visualViewport.addEventListener("resize", (event) => {
+      if ((browserInfo.browser.toLocaleLowerCase().includes('safari') && parseInt(browserInfo.version) < 16) || (browserInfo.browser.toLocaleLowerCase().includes('chrome') && parseInt(browserInfo.version) < 108)) {
+        return
+      } else {
+        $("div[data-word]").each(function() {
+          const cell = $(this);
+          const markerElement = $(this).find(".marker_element");
+          if (markerElement.hasClass('diagonal')) {
+            const width = Math.sqrt(cell.outerWidth() ** 2 + cell.outerHeight() ** 2)+'px';
+            markerElement.css('width', width);
+          }
+        });
+      }
+    });
+  }
+
+  windowResizeFunction()
+ 
 
   const targetDiv = document.getElementById("grid");
 
